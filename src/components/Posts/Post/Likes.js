@@ -4,6 +4,8 @@ import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 
 //Temporarily suspended
 
+//  const error = useSelector((state) => state.auth.authData);
+
 // <Button
 //   size="small"
 //   color="primary"

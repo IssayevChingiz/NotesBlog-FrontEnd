@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { signin, signup } from "../../actions/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   Avatar,
@@ -20,8 +20,6 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
 
-  const error = useSelector((state) => state.auth.authData);
-
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -30,8 +28,6 @@ const Auth = () => {
     password: "",
     confirmPassword: "",
   });
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +55,7 @@ const Auth = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign up" : "Sign in"}</Typography>
-        
+
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {isSignup && (

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 
 import useStyles from "./styles";
-import { createPost, updatePost, getPosts } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId, currentLikes }) => {
   const [postData, setPostData] = useState({
