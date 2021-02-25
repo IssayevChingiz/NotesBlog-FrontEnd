@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { signin, signup } from "../../actions/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   Avatar,
@@ -13,6 +13,8 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from "./Input";
 import useStyles from "./styles";
+
+//Finish error handling and remove not needed code :)
 
 const Auth = () => {
   const classes = useStyles();
@@ -28,6 +30,14 @@ const Auth = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const error = useSelector((state) => state?.auth?.error);
+  let errMsg;
+  if (error) {
+    errMsg = <>{error}</>;
+  } else {
+    errMsg = <></>;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +58,7 @@ const Auth = () => {
     setIsSignup((prevIsSignUp) => !prevIsSignUp);
     setShowPassword(false);
   };
+
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
@@ -55,7 +66,7 @@ const Auth = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign up" : "Sign in"}</Typography>
-
+        {errMsg}
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {isSignup && (
@@ -112,7 +123,7 @@ const Auth = () => {
               <Button onClick={switchMode}>
                 {isSignup
                   ? "Already have an account ? Sign in"
-                  : "Whant to join ? Sign up"}
+                  : "Want to join ? Sign up"}
               </Button>
             </Grid>
           </Grid>
